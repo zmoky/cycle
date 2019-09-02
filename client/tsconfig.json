@@ -1,0 +1,35 @@
+{
+    "compileOnSave": false,
+    "compilerOptions": {
+        "outDir": "../dist/client",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "esModuleInterop": true,
+        "module": "amd",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "target": "es2018", // es5
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es2018",
+            "dom"
+        ],
+        "baseUrl": "src",
+        "paths": {
+            "common/*": [
+                "../../src/common/*"
+            ]
+        }
+    },
+    "include": [
+        "src/**/*",
+        "../src/common/**/*",
+        "../src/export/module/ICrossModule.ts"
+    ],
+    "exclude": [
+        "../node_modules/**/*"
+    ]
+}
