@@ -62,6 +62,19 @@ export class MenuController {
         $(this.current).show();
     }
 
+    public openJoin() {
+        this.closeCurrent();
+
+        this.current = $(MENU_JOIN);
+        $(this.current).show();
+    }
+
+    public openLobby() {
+        this.closeCurrent();
+
+        this.current = $(MENU_LOBBY);
+        $(this.current).show();
+    }
 
     private menuClickHandler = (ev: Event) => {
         switch ($(ev.target).data("menu")) {
@@ -70,6 +83,19 @@ export class MenuController {
                 break;
             case "main":
                 this.openMain();
+                break;
+            case "join":
+                this.openJoin();
+                break;
+            case "lobby":
+                this.openLobby();
+                break;
+            case "ready":
+                if ($(ev.target).text() == "Ready (No)") {
+                    $(ev.target).text("Ready (Yes)");
+                } else {
+                    $(ev.target).text("Ready (No)");
+                }
                 break;
 
         }
