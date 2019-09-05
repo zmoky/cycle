@@ -1,0 +1,41 @@
+@font-face {
+  font-family: "TRON";
+  src: url("../fonts/TRON.eot?") format("eot"), url("../fonts/TRON.woff") format("woff"),
+    url("../fonts/TRON.ttf") format("truetype"), url("../fonts/TRON.svg#TRON") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Quasitron";
+  src: url("../fonts/quasitron.eot?") format("eot"), url("../fonts/quasitron.woff") format("woff"),
+    url("../fonts/quasitron.ttf") format("truetype"), url("../fonts/quasitron.svg#Quasitron") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  color: #222;
+  font-family: "Quasitron";
+}
+
+.menu {
+  display: none;
+}
+
+.menu-item {
+  font-family: "TRON";
+  font-size: 5rem;
+  -webkit-user-select: none; /* Safari 3.1+ */
+  -moz-user-select: none; /* Firefox 2+ */
+  -ms-user-select: none; /* IE 10+ */
+  user-select: none; /* Standard syntax */
+}
+
+.menu-item:hover {
+  color: #ffffff;
+  background: #000;
+}

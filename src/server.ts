@@ -26,6 +26,8 @@ app.use(express.static("client/node_modules/svg.js/dist"));
 
 app.use(express.static("client/node_modules"));
 
+app.use("/client/src", express.static("client/src"));
+
 
 io.on("connection", () => {
     console.log("Client connected");
