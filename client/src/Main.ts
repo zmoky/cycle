@@ -12,9 +12,11 @@ if (!SVG.supported) {
 var draw = SVG('viewport').size($(window).width(), $(window).height());
 var rect = draw.rect($(window).width(), $(window).height()).attr({ fill: '#0c141f' });
 
-var pl = draw.polyline('400,400 700,700 500,300').fill('none').stroke({ color: '#df740c', width: 3 });
+var plo = draw.polyline('').fill('none').stroke({ color: '#df740c', width: 3 });
+var plb = draw.polyline('').fill('none').stroke({ color: '#6fc3df', width: 3 });
 
-pl.plot([[400, 400], [400, 800], [250, 800], [250, 300], [50, 300]]);
+plo.plot([[400, 400], [400, 800], [250, 800], [250, 700], [50, 700]]);
+plb.plot([[900, 100], [1000, 100], [1000, 600], [1300, 600], [1300, 700]]);
 // pl.plot([[50, 500], [100, 500], [100, 900], [250, 300], [50, 300]]);
 
 
