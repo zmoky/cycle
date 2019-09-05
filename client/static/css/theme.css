@@ -14,11 +14,31 @@
   font-style: normal;
 }
 
+.color-blue {
+  color: #6fc3df;
+}
+
+.color-black {
+  color: #0c141f;
+}
+
+.color-white {
+  color: #e6ffff;
+}
+
+.color-yellow {
+  color: #ffe64d;
+}
+
+.color-orange {
+  color: #df740c;
+}
+
 * {
   padding: 0;
   margin: 0;
   font-size: 13px;
-  color: #222;
+  color: #0c141f;
   font-family: "Quasitron";
 }
 
@@ -36,6 +56,6 @@
 }
 
 .menu-item:hover {
-  color: #ffffff;
-  background: #000;
+  color: #6fc3df;
+  background: #0c141f;
 }
