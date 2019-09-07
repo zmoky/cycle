@@ -14,6 +14,39 @@
   font-style: normal;
 }
 
+body {
+  background: #0c141f;
+}
+
+#viewport,
+#menu-overlay,
+#messages {
+  position: fixed;
+}
+
+#viewport {
+  display: none;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  border: 3px solid #ffe64d;
+}
+
+#messages {
+  right: 10px;
+  bottom: 10px;
+  left: 10px;
+  border: 1px solid #df740c;
+  padding: 10px;
+  font-size: 13px;
+  font-family: "Courier New", Courier, monospace;
+  color: #df740c;
+  background: #0c141f;
+  height: 120px;
+  overflow-y: auto;
+}
+
 .color-blue {
   color: #6fc3df;
 }
@@ -53,9 +86,22 @@
   -moz-user-select: none; /* Firefox 2+ */
   -ms-user-select: none; /* IE 10+ */
   user-select: none; /* Standard syntax */
+  color: #df740c;
 }
 
 .menu-item:hover {
   color: #6fc3df;
   background: #0c141f;
+}
+
+.menu-item.player {
+  font-family: "Quasitron";
+  font-size: 50px;
+}
+
+.bike {
+  width: 5px;
+  height: 10px;
+  border: 1px solid #fff;
+  position: fixed;
 }

@@ -8,4 +8,4 @@ require.config({
         'resize-observer-polyfill': 'resize-observer-polyfill/dist/ResizeObserver',
     }
 });
-require(['main']); // run main.ts from here.
+require(['Main']); // run main.ts from here.

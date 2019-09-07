@@ -1,5 +1,7 @@
 import $ from "jquery";
-import { GameController } from "GameController";
+import { GameClientController } from "GameClientController";
+import { GameEvent } from "GameEvent";
+import { IPlayer } from "common/models/IPlayer";
 
 const MENU_MAIN = "#menu-overlay > .main";
 const MENU_NEW = "#menu-overlay > .new";
@@ -10,14 +12,22 @@ export class MenuController {
 
     private current;
 
-    constructor(game: GameController) {
+    constructor(private game: GameClientController) {
         $(window).on("keyup", this.keyHandler);
-
         $("body").click(this.menuClickHandler);
+
+        this.game.on(GameEvent.RECEIVED_PLAYERS, this.playersUpdateHandler);
+        this.game.on(GameEvent.JOINED, this.gameJoinedHandler);
+        this.game.on(GameEvent.LEFT, this.gameLeftHandler);
+        this.game.on(GameEvent.START, () => {
+            this.closeCurrent();
+        });
     }
 
-    public open() {
-        //
+    public open(menuSelector: string = MENU_MAIN) {
+        this.closeCurrent();
+        this.current = $(menuSelector);
+        this.current.show();
     }
 
     private keyHandler = (ev: JQuery.KeyUpEvent) => {
@@ -29,13 +39,15 @@ export class MenuController {
                 break;
             case "Enter":
                 break;
-            case "Left":
+            case "ArrowLeft":
+                this.game.turnLeft();
                 break;
-            case "Right":
+            case "ArrowRight":
+                this.game.turnRight();
                 break;
             case "Esc":
             case "Escape":
-                this.openMain();
+                this.open(MENU_MAIN);
                 break;
 
         }
@@ -48,30 +60,67 @@ export class MenuController {
         }
     }
 
-    public openMain() {
-        this.closeCurrent();
-
-        this.current = $(MENU_MAIN);
-        $(this.current).show();
+    private startGame() {
+        this.game.newGame();
     }
 
-    public openNew() {
-        this.closeCurrent();
-
-        this.current = $(MENU_NEW);
-        $(this.current).show();
-    }
-
-
-    private menuClickHandler = (ev: Event) => {
+    private menuClickHandler = (ev: JQuery.ClickEvent) => {
+        console.log(`Menu clicked ${$(ev.target).data("menu")}`);
         switch ($(ev.target).data("menu")) {
             case "new":
-                this.openNew();
+                this.open(MENU_NEW);
                 break;
             case "main":
-                this.openMain();
+                this.open(MENU_MAIN);
                 break;
-
+            case "join":
+                this.queryGames();
+                this.open(MENU_JOIN);
+                break;
+            case "leave":
+                this.leaveGame();
+                this.open(MENU_MAIN);
+                break;
+            case "ready":
+                this.readyGame();
+                break;
+            case "lobby":
+                this.game.join($(ev.target).data("game"));
+                this.open(MENU_LOBBY);
+                break;
+            case "start":
+                this.startGame();
+                break;
         }
     }
+
+    private gameJoinedHandler = () => {
+        this.open(MENU_LOBBY);
+    }
+
+    private queryGames() {
+        this.game.queryGames();
+    }
+
+    private leaveGame() {
+        this.game.leave();
+    }
+
+    private readyGame() {
+        this.game.ready();
+    }
+
+    private playersUpdateHandler = (players: IPlayer[]) => {
+        const playersList = $("#players");
+        playersList.empty();
+        for (const player of players) {
+            const status = player.ready ? " ( ready )" : "";
+            playersList.append(`<div class="menu-item player">${player.name}${status}</div>`);
+        }
+    }
+
+    private gameLeftHandler = () => {
+        this.open(MENU_MAIN);
+    }
+
 }
