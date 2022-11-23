@@ -19,7 +19,7 @@
         "jqueryui": "^1.11.1",
         "requirejs": "^2.3.6",
         "resize-observer-polyfill": "^1.5.1",
-        "socket.io": "^2.4.0",
+        "socket.io": "^2.5.0",
         "svg.js": "^2.7.1"
     },
     "devDependencies": {}
